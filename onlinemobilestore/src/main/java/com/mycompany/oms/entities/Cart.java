@@ -24,12 +24,7 @@ public class Cart {
 	@JoinColumn(name="customer_id", nullable=false)
 	private Customer customer;
 	@OneToMany
-	/*@JoinTable(
-			name="cart_mobile",
-			joinColumns= {@JoinColumn(name="cart_id")},
-			inverseJoinColumns= {@JoinColumn(name="mobile_id")}
-	)*/
-	@JoinColumn(name="cart_fk",referencdColumnName="cart_id")
+	@JoinColumn(name="cart_id",referencedColumnName="cart_id")
 	private List<Mobile> mobiles;
 	@Column(name="quantity",nullable=false)
 	private int quantity;

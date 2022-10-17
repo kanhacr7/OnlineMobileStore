@@ -38,12 +38,7 @@ public class Order {
 	@JoinColumn(name="customer_id", nullable=false)
 	private Customer customer;
 	@OneToMany
-	/*@JoinTable(
-			name="order_mobile",
-			joinColumns= {@JoinColumn(name="order_id")},
-			inverseJoinColumns= {@JoinColumn(name="mobile_id")}
-	)*/
-	@JoinColumn(name="order_fk",referencedColumnName="order_id")
+	@JoinColumn(name="order_id",referencedColumnName="order_id")
 	private List<Mobile> mobiles;
 	public Order() {
 		
