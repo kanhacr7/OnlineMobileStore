@@ -10,7 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
+//Mobile entity
 @Entity
 @Table(name="Mobiles")
 public class Mobile {
@@ -19,14 +23,19 @@ public class Mobile {
 	@Column(name="mobile_id",nullable=false)
 	private int mobileId;
 	@Column(name="mobile_name",nullable=false)
+	@NotEmpty(message="Mobile name cannot be blank")
 	private String mobileName;
 	@Column(name="mobile_cost",nullable=false)
+	@Min(value=0, message="Cost cannot be negative")
 	private float mobileCost;
 	@Column(name="mfd",nullable=false)
 	private LocalDate mfd;
 	@Column(name="model_number",nullable=false)
+	@NotEmpty(message="Model number cannot be blank")
 	private String modelNumber;
 	@Column(name="company_name",nullable=false)
+	@NotEmpty(message="Company name cannot be blank")
+	@Size(min=2, message="Company name should be atleast 2 characters long")
 	private String companyName;
 	@ManyToOne
 	@JoinColumn(name="category_id", nullable=false)

@@ -6,7 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
+//User entity
 @Entity
 @Table(name="Users")
 public class User {
@@ -15,11 +19,17 @@ public class User {
 	@Column(name="user_id",nullable=false)
 	private int userId;
 	@Column(name="user_name",nullable=false)
+	@NotEmpty(message="User name cannot be blank")
+	@Size(min=2, message="User name should be atleast 2 characters long")
 	private String userName;
 	@Column(name="user_password",nullable=false)
+	@NotEmpty(message="Password cannot be blank")
+	@Size(min=8, message="Password should be atleast 8 characters long")
 	private String userPassword;
 	@Column(name="user_role",nullable=false)
+	@Pattern(regexp="Admin|Customer", message="Role can be either Admin or Customer")
 	private String userRole;
+	
 	public User() {
 		
 	}

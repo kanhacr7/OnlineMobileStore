@@ -6,7 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+
+//Customer entity
 @Entity
 @Table(name="Customers")
 public class Customer {
@@ -15,12 +21,18 @@ public class Customer {
 	@Column(name="customer_id",nullable=false)
 	private int customerId;
 	@Column(name="customer_name",nullable=false)
+	@NotEmpty(message="Customer name cannot be blank")
+	@Size(min=2, message="Customer name should be atleast 2 characters long")
 	private String customerName;
 	@Column(name="email_id",nullable=false)
+	@NotEmpty(message="Email cannot be blank")
+	@Email(message="Please enter a valid email address")
 	private String emailId;
 	@Column(name="mobile_number",nullable=false)
+	@NotNull(message="Mobile number cannot be null")
 	private Long mobileNumber;
 	@Column(name="address",nullable=false)
+	@NotEmpty(message="Address cannot be blank")
 	private String address;
 	public Customer() {
 		

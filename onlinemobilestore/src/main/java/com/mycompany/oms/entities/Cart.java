@@ -2,17 +2,18 @@ package com.mycompany.oms.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+//Cart entity
 @Entity
 @Table(name="Carts")
 public class Cart {
@@ -20,10 +21,10 @@ public class Cart {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="cart_id",nullable=false)
 	private int cartId;
-	@ManyToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="customer_id", nullable=false)
 	private Customer customer;
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="cart_id",referencedColumnName="cart_id")
 	private List<Mobile> mobiles;
 	@Column(name="quantity",nullable=false)
